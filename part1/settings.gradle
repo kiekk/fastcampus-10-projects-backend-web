@@ -1,3 +1,4 @@
 rootProject.name = 'part1'
 include 'mvc-practice'
+include 'oop-practice'
 
