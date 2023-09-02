@@ -1,4 +1,4 @@
-package org.example;
+package org.example.calculate;
 
 import java.util.stream.Stream;
 
