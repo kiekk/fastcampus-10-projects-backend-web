@@ -50,7 +50,8 @@ public class CalculatorTest {
     @Test
     void calculateExceptionTest() {
         assertThatCode(() -> Calculator.calculate(10, "/", 0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("0으로 나눌 수 없습니다.");
 
     }
 
