@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QueryStrings {
-    private List<QueryString> queryStrings = new ArrayList<>();
+    private final List<QueryString> queryStrings = new ArrayList<>();
 
     public QueryStrings(String queryStringLine) {
         String[] queryStringTokens = queryStringLine.split("&");
@@ -20,4 +20,12 @@ public class QueryStrings {
                 });
     }
 
+    public String getValue(String key) {
+        return queryStrings
+                .stream()
+                .filter(queryString -> queryString.exists(key))
+                .map(QueryString::getValue)
+                .findFirst()
+                .orElse(null);
+    }
 }
