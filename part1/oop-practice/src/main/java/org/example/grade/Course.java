@@ -1,5 +1,7 @@
 package org.example.grade;
 
+import java.util.List;
+
 public class Course {
 
     private final String subject;
@@ -17,26 +19,17 @@ public class Course {
     }
 
     public double getGradeToNumber() {
-        double grade = 0;
-        switch (this.grade) {
-            case "A+":
-                grade = 4.5;
-                break;
-            case "A":
-                grade = 4.0;
-                break;
-            case "B+":
-                grade = 3.5;
-                break;
-            case "B":
-                grade = 3.0;
-                break;
-            case "C+":
-                grade = 2.5;
-                break;
-            case "C":
-                grade = 2.0;
-                break;
+        // 학점을 List를 사용하여 인덱스와 학점 점수를 매핑
+        // A = 4
+        // B = 3
+        // C = 2
+        // ...
+        List<String> grades = List.of("F", "D", "C", "B", "A");
+        double grade = grades.indexOf(this.grade.substring(0, 1));
+
+        // 학점에 +가 있다면 0.5를 추가합니다.
+        if (this.grade.contains("+")) {
+            grade += 0.5;
         }
         return grade;
     }
