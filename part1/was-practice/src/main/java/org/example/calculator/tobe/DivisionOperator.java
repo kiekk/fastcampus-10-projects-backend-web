@@ -10,6 +10,7 @@ public class DivisionOperator implements ArithmeticOperator {
 
     @Override
     public boolean supports(String operator) {
-        return "/".equals(operator);
+        // URL 에서는 / 문자가 %2F로 변환됨
+        return "/".equals(operator) || "%2F".equals(operator);
     }
 }
