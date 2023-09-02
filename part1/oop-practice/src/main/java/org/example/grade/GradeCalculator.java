@@ -1,12 +1,10 @@
 package org.example.grade;
 
-import java.util.List;
-
 public class GradeCalculator {
 
-    private final List<Course> courses;
+    private final Courses courses;
 
-    public GradeCalculator(List<Course> courses) {
+    public GradeCalculator(Courses courses) {
         this.courses = courses;
     }
 
@@ -17,10 +15,10 @@ public class GradeCalculator {
      */
     public double calculateGrade() {
         // (학점수*교과목 평점)의 합계
-        double multipliedCreditAndCourseGrade = courses.stream().mapToDouble(Course::getMultiplyCreditAndCoursedGrade).sum();
+        double multipliedCreditAndCourseGrade = courses.getMultipliedCreditAndCourseGrade();
 
         // 수강신청 총학점 수
-        int totalCompletedCredit = courses.stream().mapToInt(Course::getCredit).sum();
+        int totalCompletedCredit = courses.getTotalCompletedCredit();
         return multipliedCreditAndCourseGrade / totalCompletedCredit;
     }
 

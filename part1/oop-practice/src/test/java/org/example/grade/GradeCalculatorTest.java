@@ -27,7 +27,7 @@ public class GradeCalculatorTest {
                 new Course("OOP", 3, "A+"),
                 new Course("자료구조", 3, "A+")
         );
-        GradeCalculator gradeCalculator = new GradeCalculator(courses);
+        GradeCalculator gradeCalculator = new GradeCalculator(new Courses(courses));
 
         // when
         double gradeResult = gradeCalculator.calculateGrade();
