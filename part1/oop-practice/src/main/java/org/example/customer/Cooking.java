@@ -2,6 +2,6 @@ package org.example.customer;
 
 public class Cooking {
     public Cook makeCook(MenuItem menuItem) {
-        return null;
+        return new Cook("돈까스", 5_000);
     }
 }
