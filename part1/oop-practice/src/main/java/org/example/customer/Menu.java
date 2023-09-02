@@ -11,6 +11,6 @@ public class Menu {
     }
 
     public MenuItem choose(String name) {
-        return null;
+        return new MenuItem("돈까스", 5_000);
     }
 }
