@@ -1,6 +1,5 @@
 package org.example.calculate;
 
-import org.example.calculate.Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
@@ -44,6 +44,14 @@ public class CalculatorTest {
         int result = Calculator.calculate(operand1, operator, operand2);
 
         assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("나눗셈 연산에서 0으로 나누는 경우에는 예외가 발생한다.")
+    @Test
+    void calculateExceptionTest() {
+        assertThatCode(() -> Calculator.calculate(10, "/", 0))
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 
     private static Stream<Arguments> formulaAndResult() {
