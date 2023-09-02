@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /**
@@ -24,7 +23,7 @@ public class CalculatorTest {
     @DisplayName("덧셈 연산을 수행한다.")
     @Test
     void additionTest() {
-        int result = Calculator.calculate(1, "+", 2);
+        int result = Calculator.calculate(new PositiveNumber(1), "+", new PositiveNumber(2));
 
         assertThat(result).isEqualTo(3);
     }
@@ -32,7 +31,7 @@ public class CalculatorTest {
     @DisplayName("뺄셈 연산을 수행한다.")
     @Test
     void subtractionTest() {
-        int result = Calculator.calculate(1, "-", 2);
+        int result = Calculator.calculate(new PositiveNumber(1), "-", new PositiveNumber(2));
 
         assertThat(result).isEqualTo(-1);
     }
@@ -40,27 +39,18 @@ public class CalculatorTest {
     @DisplayName("@ParameterizedTest 로 여러 연산에 대한 테스트를 진행합니다.")
     @ParameterizedTest
     @MethodSource("formulaAndResult")
-    void calculatorTest(int operand1, String operator, int operand2, int expected) {
+    void calculatorTest(PositiveNumber operand1, String operator, PositiveNumber operand2, int expected) {
         int result = Calculator.calculate(operand1, operator, operand2);
 
         assertThat(result).isEqualTo(expected);
     }
 
-    @DisplayName("나눗셈 연산에서 0으로 나누는 경우에는 예외가 발생한다.")
-    @Test
-    void calculateExceptionTest() {
-        assertThatCode(() -> Calculator.calculate(10, "/", 0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("0으로 나눌 수 없습니다.");
-
-    }
-
     private static Stream<Arguments> formulaAndResult() {
         return Stream.of(
-                arguments(1, "+", 2, 3),
-                arguments(1, "-", 2, -1),
-                arguments(4, "*", 2, 8),
-                arguments(4, "/", 2, 2)
+                arguments(new PositiveNumber(1), "+", new PositiveNumber(2), 3),
+                arguments(new PositiveNumber(1), "-", new PositiveNumber(2), -1),
+                arguments(new PositiveNumber(4), "*", new PositiveNumber(2), 8),
+                arguments(new PositiveNumber(4), "/", new PositiveNumber(2), 2)
         );
     }
 
