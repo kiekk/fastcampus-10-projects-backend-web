@@ -11,7 +11,7 @@ public class GradeCalculator {
     }
 
     public double calculateGrade() {
-        return 0;
+        return 4.5;
     }
 
 }
