@@ -3,8 +3,8 @@ package org.example.customer;
 import java.util.Objects;
 
 public class Cook {
-    private String name;
-    private int price;
+    private final String name;
+    private final int price;
 
     public Cook(String name, int price) {
         this.name = name;
