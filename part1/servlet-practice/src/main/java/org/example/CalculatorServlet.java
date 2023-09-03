@@ -5,20 +5,22 @@ import org.example.calculator.domain.PositiveNumber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/calculate")
-public class CalculatorServlet extends GenericServlet {
+public class CalculatorServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(CalculatorServlet.class);
 
+
     @Override
-    public void service(ServletRequest request, ServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("service");
         request.setCharacterEncoding("utf-8");
         int operand1 = Integer.parseInt(request.getParameter("operand1"));
