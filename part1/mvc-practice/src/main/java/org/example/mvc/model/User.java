@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.mvc.model;
 
 import java.util.Objects;
 
