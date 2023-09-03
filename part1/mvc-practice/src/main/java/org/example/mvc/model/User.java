@@ -15,6 +15,14 @@ public class User {
         return this.equals(user);
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
