@@ -1,37 +1,19 @@
 package org.example;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserDao {
     public void create(User user) throws SQLException {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-            con = ConnectionManager.getConnection();
-            String sql = "INSERT INTO USERS VALUES (?, ?, ?, ?)";
-            pstmt = con.prepareStatement(sql);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.executeUpdate(user, "INSERT INTO USERS VALUES (?, ?, ?, ?)", pstmt -> {
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getName());
             pstmt.setString(4, user.getEmail());
-
-            pstmt.executeUpdate();
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (Exception e) {
-
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                }
-            }
-        }
+        });
     }
 
     public User findByUserId(String userId) throws SQLException {
