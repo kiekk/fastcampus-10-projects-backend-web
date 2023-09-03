@@ -1,7 +1,6 @@
 package org.example.mvc;
 
 import org.example.mvc.annotation.RequestMethod;
-import org.example.mvc.controller.Controller;
 import org.example.mvc.view.JspViewResolver;
 import org.example.mvc.view.ModelAndView;
 import org.example.mvc.view.View;
@@ -21,17 +20,26 @@ import java.util.List;
 public class DispatcherServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(DispatcherServlet.class);
-    private RequestMappingHandlerMapping requestMappingHandlerMapping;
+    private List<HandlerMapping> handlerMappings;
     private List<ViewResolver> viewResolvers;
     private List<HandlerAdapter> handlerAdapters;
 
     @Override
     public void init() throws ServletException {
-        requestMappingHandlerMapping = new RequestMappingHandlerMapping();
+        RequestMappingHandlerMapping requestMappingHandlerMapping = new RequestMappingHandlerMapping();
         requestMappingHandlerMapping.init();
 
+        AnnotationHandlerMapping annotationHandlerMapping = new AnnotationHandlerMapping("org.example");
+        annotationHandlerMapping.initialize();
+
+        handlerMappings = List.of(
+                requestMappingHandlerMapping,
+                annotationHandlerMapping
+        );
+
         handlerAdapters = List.of(
-                new SimpleControllerHandlerAdapter()
+                new SimpleControllerHandlerAdapter(),
+                new AnnotationHandlerAdapter()
         );
         viewResolvers = List.of(
                 new JspViewResolver()
@@ -41,8 +49,17 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("[DispatcherServlet] service started.");
+
+        String requestURI = request.getRequestURI();
+        RequestMethod requestMethod = RequestMethod.valueOf(request.getMethod());
+
         try {
-            Controller handler = requestMappingHandlerMapping.findHandler(new HandlerKey(RequestMethod.valueOf(request.getMethod()), request.getRequestURI()));
+            Object handler = handlerMappings
+                    .stream()
+                    .filter(handlerMapping -> handlerMapping.findHandler(new HandlerKey(requestMethod, requestURI)) != null)
+                    .map(handlerMapping -> handlerMapping.findHandler(new HandlerKey(requestMethod, requestURI)))
+                    .findFirst()
+                    .orElseThrow(() -> new ServletException("No handler for [" + requestMethod + ", " + requestURI + "]"));
 
             ModelAndView modelAndView = handlerAdapters
                     .stream()
