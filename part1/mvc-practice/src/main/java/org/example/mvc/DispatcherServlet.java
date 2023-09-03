@@ -32,8 +32,12 @@ public class DispatcherServlet extends HttpServlet {
             Controller handler = requestMappingHandlerMapping.findHandler(new HandlerKey(RequestMethod.valueOf(request.getMethod()), request.getRequestURI()));
             String viewName = handler.handleRequest(request, response);
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewName);
-            requestDispatcher.forward(request, response);
+            if (viewName.startsWith("redirect:")) {
+                response.sendRedirect(viewName.replaceAll("redirect:", ""));
+            } else {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewName);
+                requestDispatcher.forward(request, response);
+            }
         } catch (Exception e) {
             log.error("exception occurred: [{}]", e.getMessage(), e);
         }

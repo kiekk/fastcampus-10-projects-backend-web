@@ -11,10 +11,6 @@ public class User {
         this.name = name;
     }
 
-    public boolean equalsUser(User user) {
-        return this.equals(user);
-    }
-
     public String getUserId() {
         return userId;
     }
