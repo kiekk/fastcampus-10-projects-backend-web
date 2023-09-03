@@ -1,0 +1,18 @@
+### 덧셈 GET 방식에서는 &는 쿼리스트링을 연결할 때 쓰이고, +는 공백으로 사용되기 때문에
+### 덧셈 기호인 +를 전달하면 URL Decode에 의해 공백으로 치환되어 에러가 발생합니다.
+
+### ❌
+GET http://localhost:8080/calculate?operand1=20&operator=+&operand2=11
+
+### 다음과 같이 인코딩된 + 문자인 %2b를 사용해야 합니다.
+### ✅
+GET http://localhost:8080/calculate?operand1=20&operator=%2b&operand2=11
+
+### 뺄셈
+GET http://localhost:8080/calculate?operand1=20&operator=-&operand2=11
+
+### 곱셈
+GET http://localhost:8080/calculate?operand1=20&operator=*&operand2=11
+
+### 나눗셈
+GET http://localhost:8080/calculate?operand1=30&operator=/&operand2=5
