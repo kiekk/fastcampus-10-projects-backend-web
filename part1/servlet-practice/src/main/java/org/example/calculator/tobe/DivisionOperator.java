@@ -1,0 +1,16 @@
+package org.example.calculator.tobe;
+
+import org.example.calculator.domain.PositiveNumber;
+
+public class DivisionOperator implements ArithmeticOperator {
+    @Override
+    public int calculate(PositiveNumber operand1, PositiveNumber operand2) {
+        return operand1.toInt() / operand2.toInt();
+    }
+
+    @Override
+    public boolean supports(String operator) {
+        // URL 에서는 / 문자가 %2F로 변환됨
+        return "/".equals(operator) || "%2F".equals(operator);
+    }
+}
