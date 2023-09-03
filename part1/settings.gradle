@@ -4,4 +4,5 @@ include 'oop-practice'
 include 'was-practice'
 include 'servlet-practice'
 include 'jdbc-practice'
+include 'di-practice'
 
