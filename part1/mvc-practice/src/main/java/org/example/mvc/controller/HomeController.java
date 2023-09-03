@@ -10,6 +10,6 @@ public class HomeController implements org.example.mvc.controller.Controller {
 
     @Override
     public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-        return "home";
+        return "home.jsp";
     }
 }
