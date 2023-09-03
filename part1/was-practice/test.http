@@ -1,0 +1,17 @@
+GET http://localhost:8080
+
+### 덧셈
+
+GET http://localhost:8080/calculate?operand1=11&operator=+&operand2=5
+
+### 뺄셈
+
+GET http://localhost:8080/calculate?operand1=11&operator=-&operand2=5
+
+### 곱셈
+
+GET http://localhost:8080/calculate?operand1=11&operator=*&operand2=5
+
+### 나눗셈
+
+GET http://localhost:8080/calculate?operand1=15&operator=/&operand2=5
