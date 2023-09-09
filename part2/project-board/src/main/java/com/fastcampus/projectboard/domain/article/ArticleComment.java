@@ -1,13 +1,9 @@
 package com.fastcampus.projectboard.domain.article;
 
+import com.fastcampus.projectboard.domain.common.AuditingFields;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -19,7 +15,7 @@ import java.util.Objects;
 })
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ArticleComment {
+public class ArticleComment extends AuditingFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,19 +27,6 @@ public class ArticleComment {
     @Setter
     @ManyToOne(optional = false)
     private Article article; // 게시글 (ID)
-
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt; // 생성일시
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String createdBy; // 생성자
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
 
     private ArticleComment(String content, Article article) {
         this.content = content;
