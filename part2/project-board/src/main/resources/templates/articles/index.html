@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,10 +8,7 @@
     <title>게시판 페이지</title>
 </head>
 <body>
-<header>
-    header 영역
-    <hr>
-</header>
+<header th:replace="header :: header"></header>
 
 메인 페이지 - 테이블
 
@@ -75,9 +72,7 @@
     </nav>
 </main>
 
-<footer>
-    <hr>
-    footer 영역
-</footer>
+<footer th:replace="footer :: footer"></footer>
+
 </body>
 </html>
