@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판 페이지</title>
+</head>
+<body>
+<header>
+    header 영역
+    <hr>
+</header>
+
+메인 페이지 - 테이블
+
+<main>
+    <form>
+        <label for="search-type" hidden>유형</label>
+        <select id="search-type" name="search-type">
+            <option value="">제목</option>
+            <option value="">본문</option>
+            <option value="">ID</option>
+            <option value="">닉네임</option>
+            <option value="">해시태그</option>
+        </select>
+        <label for="search-value" hidden>검색어</label>
+        <input type="search" id="search-value" name="search-value" placeholder="검색어를 입력하세요.">
+        <button type="submit">검색</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>헤시태그</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tdoby>
+            <tr>
+                <td>첫글</td>
+                <td>#java</td>
+                <td>Soono</td>
+                <td>2022-01-01</td>
+            </tr>
+            <tr>
+                <td>두번째글</td>
+                <td>#spring</td>
+                <td>Soono</td>
+                <td>2022-01-02</td>
+            </tr>
+            <tr>
+                <td>세번째글</td>
+                <td>#java</td>
+                <td>Soono</td>
+                <td>2022-01-03</td>
+            </tr>
+        </tdoby>
+    </table>
+
+    <nav>
+        <table>
+            <tr>
+                <td>previous</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>next</td>
+            </tr>
+        </table>
+    </nav>
+</main>
+
+<footer>
+    <hr>
+    footer 영역
+</footer>
+</body>
+</html>
