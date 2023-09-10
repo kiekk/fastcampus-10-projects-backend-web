@@ -41,7 +41,7 @@ class ArticleControllerTest {
         // given
 
         // when & then
-        mvc.perform(get("/article/1"))
+        mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/detail"))
@@ -56,7 +56,7 @@ class ArticleControllerTest {
         // given
 
         // when & then
-        mvc.perform(get("/article/search"))
+        mvc.perform(get("/articles/search"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/search"))
@@ -70,7 +70,7 @@ class ArticleControllerTest {
         // given
 
         // when & then
-        mvc.perform(get("/article/search-hashtag"))
+        mvc.perform(get("/articles/search-hashtag"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/search-hashtag"))
