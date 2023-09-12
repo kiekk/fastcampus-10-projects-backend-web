@@ -1,6 +1,7 @@
 package com.fastcampus.projectboard.domain.article;
 
 import com.fastcampus.projectboard.domain.common.AuditingFields;
+import com.fastcampus.projectboard.domain.user.UserAccount;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,13 +29,18 @@ public class ArticleComment extends AuditingFields {
     @ManyToOne(optional = false)
     private Article article; // 게시글 (ID)
 
-    private ArticleComment(String content, Article article) {
-        this.content = content;
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount; // 유저 정보 (ID)
+
+    private ArticleComment(Article article, UserAccount userAccount, String content) {
         this.article = article;
+        this.userAccount = userAccount;
+        this.content = content;
     }
 
-    public static ArticleComment of(String content, Article article) {
-        return new ArticleComment(content, article);
+    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
+        return new ArticleComment(article, userAccount, content);
     }
 
     @Override
