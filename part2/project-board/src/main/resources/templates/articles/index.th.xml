@@ -3,7 +3,7 @@
     <attr sel="#header" th:replace="~{header :: header}"/>
     <attr sel="#footer" th:replace="~{footer :: footer}"/>
 
-    <atte sel="#article-table">
+    <attr sel="#article-table">
         <attr sel="tbody" th:remove="all-but-first">
             <attr sel="tr[0]" th:each="article : ${articles}">
                 <attr sel="td.title/a" th:text="${article.title}"
@@ -13,5 +13,5 @@
                 <attr sel="td.created-by/time" th:datetime="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}" />
             </attr>
         </attr>
-    </atte>
+    </attr>
 </thlogic>
