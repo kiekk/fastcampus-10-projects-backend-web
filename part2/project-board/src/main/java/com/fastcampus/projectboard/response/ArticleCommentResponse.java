@@ -3,7 +3,6 @@ package com.fastcampus.projectboard.response;
 import com.fastcampus.projectboard.dto.ArticleCommentDto;
 import org.apache.logging.log4j.util.Strings;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record ArticleCommentResponse(
