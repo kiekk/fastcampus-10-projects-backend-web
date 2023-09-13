@@ -1,8 +1,10 @@
 package com.fastcampus.projectboard.response;
 
 import com.fastcampus.projectboard.dto.ArticleWithCommentsDto;
+import org.apache.logging.log4j.util.Strings;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public record ArticleWithCommentResponse(
 
     public static ArticleWithCommentResponse from(ArticleWithCommentsDto dto) {
         String nickname = dto.userAccountDto().nickname();
-        if (nickname == null || nickname.isBlank()) {
+        if (Strings.isEmpty(nickname)) {
             nickname = dto.userAccountDto().userId();
         }
 
