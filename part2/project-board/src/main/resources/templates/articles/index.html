@@ -11,7 +11,10 @@
     <link href="/css/search-bar.css" rel="stylesheet">
 </head>
 <body>
-<header id="header"></header>
+<header id="header">
+    헤더 삽입부
+    <hr>
+</header>
 
 <main class="container">
 
@@ -56,21 +59,21 @@
         </div>
     </div>
 
-    <table class="table">
+    <table class="table" id="article-table">
         <thead>
         <tr>
-            <th class="col-6">제목</th>
-            <th class="col-2">해시태그</th>
-            <th class="col">작성자</th>
-            <th class="col">작성일</th>
+            <th class="title col-6">제목</th>
+            <th class="hashtag col-2">해시태그</th>
+            <th class="user-id col">작성자</th>
+            <th class="created-at col">작성일</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>첫글</td>
-            <td>#java</td>
-            <td>Soono</td>
-            <td>
+            <td class="title"><a>첫글</a></td>
+            <td class="hashtag">#java</td>
+            <td class="user-id">Soono</td>
+            <td class="created-at">
                 <time>2022-01-01</time>
             </td>
         </tr>
@@ -104,7 +107,10 @@
     </nav>
 </main>
 
-<footer id="footer"></footer>
+<footer id="footer">
+    <hr>
+    푸터 삽입부
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
