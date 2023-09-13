@@ -4,7 +4,9 @@ import com.fastcampus.projectboard.domain.type.SearchType;
 import com.fastcampus.projectboard.response.ArticleResponse;
 import com.fastcampus.projectboard.response.ArticleWithCommentResponse;
 import com.fastcampus.projectboard.service.ArticleService;
+import com.fastcampus.projectboard.service.PaginationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Controller
@@ -23,6 +26,7 @@ import java.util.stream.Stream;
 public class ArticleController {
 
     private final ArticleService articleService;
+    private final PaginationService paginationService;
 
     @GetMapping
     public String articles(
@@ -31,8 +35,11 @@ public class ArticleController {
             @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             ModelMap model) {
 
-        model.addAttribute("articles", articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from));
+        Page<ArticleResponse> articleResponses = articleService.searchArticles(searchType, searchValue, pageable).map(ArticleResponse::from);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articleResponses.getTotalPages());
+        model.addAttribute("articles", articleResponses);
         model.addAttribute("searchTypes", Stream.of(SearchType.values()).toList());
+        model.addAttribute("paginationBarNumbers", barNumbers);
         return "articles/index";
     }
 
@@ -41,6 +48,7 @@ public class ArticleController {
         ArticleWithCommentResponse articleWithCommentResponse = ArticleWithCommentResponse.from(articleService.getArticle(articleId));
         model.addAttribute("article", articleWithCommentResponse);
         model.addAttribute("articleComments", articleWithCommentResponse.articleCommentResponses());
+        model.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/detail";
     }
 
