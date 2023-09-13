@@ -21,7 +21,7 @@ public record ArticleResponse(
 
     public static ArticleResponse from(ArticleDto dto) {
         String nickname = dto.userAccountDto().nickname();
-        if (Strings.isNotEmpty(nickname)) {
+        if (Strings.isEmpty(nickname)) {
             nickname = dto.userAccountDto().userId();
         }
 

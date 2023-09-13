@@ -1,6 +1,7 @@
 package com.fastcampus.projectboard.response;
 
 import com.fastcampus.projectboard.dto.ArticleCommentDto;
+import org.apache.logging.log4j.util.Strings;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public record ArticleCommentResponse(
 
     public static ArticleCommentResponse from(ArticleCommentDto dto) {
         String nickname = dto.userAccountDto().nickname();
-        if (nickname == null || nickname.isBlank()) {
+        if (Strings.isEmpty(nickname)) {
             nickname = dto.userAccountDto().userId();
         }
 
