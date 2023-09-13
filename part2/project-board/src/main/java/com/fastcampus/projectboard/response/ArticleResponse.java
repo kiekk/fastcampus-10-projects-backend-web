@@ -1,8 +1,8 @@
 package com.fastcampus.projectboard.response;
 
 import com.fastcampus.projectboard.dto.ArticleDto;
+import org.apache.logging.log4j.util.Strings;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public record ArticleResponse(
@@ -21,7 +21,7 @@ public record ArticleResponse(
 
     public static ArticleResponse from(ArticleDto dto) {
         String nickname = dto.userAccountDto().nickname();
-        if (nickname == null || nickname.isBlank()) {
+        if (Strings.isNotEmpty(nickname)) {
             nickname = dto.userAccountDto().userId();
         }
 
