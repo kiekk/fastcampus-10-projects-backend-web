@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("articles")
@@ -50,6 +49,20 @@ public class ArticleController {
         model.addAttribute("articleComments", articleWithCommentResponse.articleCommentResponses());
         model.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/detail";
+    }
+
+    @GetMapping("search-hashtag")
+    public String searchHashtag(@RequestParam(required = false) String searchValue,
+                                @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+                                ModelMap model) {
+        Page<ArticleResponse> articles = articleService.searchArticlesViaHashtag(searchValue, pageable).map(ArticleResponse::from);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
+        List<String> hashtags = articleService.getHashtags();
+        model.addAttribute("articles", articles);
+        model.addAttribute("searchType", SearchType.HASHTAG);
+        model.addAttribute("hashtags", hashtags);
+        model.addAttribute("paginationBarNumbers", barNumbers);
+        return "articles/search-hashtag";
     }
 
 }
