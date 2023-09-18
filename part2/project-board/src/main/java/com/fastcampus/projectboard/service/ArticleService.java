@@ -29,13 +29,21 @@ public class ArticleService {
         }
 
         switch (searchType) {
-            case TITLE -> articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case CONTENT -> articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case ID ->
-                    articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case NICKNAME ->
-                    articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
-            case HASHTAG -> articleRepository.findByHashtag("#" + searchKeyword, pageable).map(ArticleDto::from);
+            case TITLE -> {
+                return articleRepository.findByTitleContaining(searchKeyword, pageable).map(ArticleDto::from);
+            }
+            case CONTENT -> {
+                return articleRepository.findByContentContaining(searchKeyword, pageable).map(ArticleDto::from);
+            }
+            case ID -> {
+                return articleRepository.findByUserAccount_UserIdContaining(searchKeyword, pageable).map(ArticleDto::from);
+            }
+            case NICKNAME -> {
+                return articleRepository.findByUserAccount_NicknameContaining(searchKeyword, pageable).map(ArticleDto::from);
+            }
+            case HASHTAG -> {
+                return articleRepository.findByHashtag("#" + searchKeyword, pageable).map(ArticleDto::from);
+            }
         }
 
         return Page.empty();
