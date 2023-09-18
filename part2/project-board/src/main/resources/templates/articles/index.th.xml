@@ -4,6 +4,18 @@
     <attr sel="#footer" th:replace="~{footer :: footer}"/>
 
     <attr sel="main" th:object="${articles}">
+
+        <attr sel="#search-type" th:remove="all-but-first">
+            <attr sel="option[0]"
+                  th:each="searchType : ${searchTypes}"
+                  th:value="${searchType.name}"
+                  th:text="${searchType.description}"
+                  th:selected="${param.searchType != null && (param.searchType.toString == searchType.name)}"
+            />
+        </attr>
+
+        <attr sel="#search-value" th:value="${param.searchValue}"></attr>
+
         <attr sel="#article-table">
             <attr sel="thead/tr">
                 <attr sel="th.title/a" th:text="'제목'" th:href="@{/articles(
