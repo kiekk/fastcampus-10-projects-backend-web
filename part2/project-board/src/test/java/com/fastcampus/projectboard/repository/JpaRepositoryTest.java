@@ -3,12 +3,14 @@ package com.fastcampus.projectboard.repository;
 import com.fastcampus.projectboard.config.JpaConfig;
 import com.fastcampus.projectboard.domain.article.Article;
 import com.fastcampus.projectboard.domain.user.UserAccount;
+import com.fastcampus.projectboard.dto.ArticleDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,12 +54,12 @@ class JpaRepositoryTest {
         UserAccount userAccount = userAccountRepository.save(UserAccount.of("soono", "pw", null, null, null));
         Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
+
         // when
         articleRepository.save(article);
 
         // then
-        assertThat(articleRepository.count())
-                .isEqualTo(previousCount + 1);
+        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
 
     @DisplayName("update test")
