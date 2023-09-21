@@ -10,7 +10,7 @@ import com.fastcampus.projectboard.dto.request.ArticleRequest;
 import com.fastcampus.projectboard.response.ArticleResponse;
 import com.fastcampus.projectboard.service.ArticleService;
 import com.fastcampus.projectboard.service.PaginationService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fastcampus.projectboard.util.FormDataEncoder;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,21 +37,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("View 컨트롤러 - 게시글")
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class, FormDataEncoder.class})
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
 
     private final MockMvc mvc;
+    private final FormDataEncoder formDataEncoder;
 
     @MockBean
     private ArticleService articleService;
     @MockBean
     private PaginationService paginationService;
-    @Autowired
-    private ObjectMapper objectMapper;
 
-    ArticleControllerTest(@Autowired MockMvc mvc) {
+    ArticleControllerTest(@Autowired MockMvc mvc,
+                          @Autowired FormDataEncoder formDataEncoder) {
         this.mvc = mvc;
+        this.formDataEncoder = formDataEncoder;
     }
 
     @DisplayName("[view][GET] 게시글 리스트 (게시판) 페이지 - 정상 호출")
@@ -235,7 +236,7 @@ class ArticleControllerTest {
         mvc.perform(
                         post("/articles/form")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                                .content(objectMapper.writeValueAsString(articleRequest))
+                                .content(formDataEncoder.encode(articleRequest))
                                 .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
@@ -274,7 +275,7 @@ class ArticleControllerTest {
         mvc.perform(
                         post("/articles/" + articleId + "/form")
                                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                                .content(objectMapper.writeValueAsString(articleRequest))
+                                .content(formDataEncoder.encode(articleRequest))
                                 .with(csrf())
                 )
                 .andExpect(status().is3xxRedirection())
