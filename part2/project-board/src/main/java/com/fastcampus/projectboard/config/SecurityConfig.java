@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -28,10 +29,9 @@ public class SecurityConfig {
                                 .permitAll()
                                 // 인증이 필요하지 않은 페이지 설정
                                 .requestMatchers(
-                                        HttpMethod.GET,
-                                        "/",
-                                        "/articles",
-                                        "/articles/search-hashtag"
+                                        new AntPathRequestMatcher("/", HttpMethod.GET.name()),
+                                        new AntPathRequestMatcher("/articles", HttpMethod.GET.name()),
+                                        new AntPathRequestMatcher("/articles/search-hashtag", HttpMethod.GET.name())
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
