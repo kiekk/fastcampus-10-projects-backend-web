@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS = Dserver.port=$PORT -Dspring.profiles.active=heroku -jar build/libsproject-board-v1.1.jar
+web: java $JAVA_OPTS = Dserver.port=$PORT -Dspring.profiles.active=heroku -jar part2/project-board/build/libsproject-board-v1.1.jar
