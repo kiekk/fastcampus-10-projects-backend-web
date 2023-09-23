@@ -5,7 +5,7 @@ import com.fastcampus.projectboard.domain.constant.SearchType;
 import com.fastcampus.projectboard.dto.request.ArticleRequest;
 import com.fastcampus.projectboard.dto.security.BoardPrincipal;
 import com.fastcampus.projectboard.response.ArticleResponse;
-import com.fastcampus.projectboard.response.ArticleWithCommentResponse;
+import com.fastcampus.projectboard.response.ArticleWithCommentsResponse;
 import com.fastcampus.projectboard.service.ArticleService;
 import com.fastcampus.projectboard.service.PaginationService;
 import lombok.RequiredArgsConstructor;
@@ -45,9 +45,9 @@ public class ArticleController {
 
     @GetMapping("{articleId}")
     public String article(@PathVariable Long articleId, ModelMap model) {
-        ArticleWithCommentResponse articleWithCommentResponse = ArticleWithCommentResponse.from(articleService.getArticleWithComments(articleId));
-        model.addAttribute("article", articleWithCommentResponse);
-        model.addAttribute("articleComments", articleWithCommentResponse.articleCommentResponses());
+        ArticleWithCommentsResponse articleWithCommentsResponse = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
+        model.addAttribute("article", articleWithCommentsResponse);
+        model.addAttribute("articleComments", articleWithCommentsResponse.articleCommentResponses());
         model.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/detail";
     }
