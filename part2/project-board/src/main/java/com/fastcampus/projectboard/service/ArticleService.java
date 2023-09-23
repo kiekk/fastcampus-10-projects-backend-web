@@ -75,7 +75,7 @@ public class ArticleService {
 
     public void updateArticle(Long articleId, ArticleDto dto) {
         try {
-            Article article = articleRepository.getReferenceById(articleId);
+            Article article = articleRepository.findById(articleId).orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다 - articleId : " + articleId));
             UserAccount userAccount = userAccountRepository.getReferenceById(dto.userAccountDto().userId());
 
             if (article.getUserAccount().equals(userAccount)) {
