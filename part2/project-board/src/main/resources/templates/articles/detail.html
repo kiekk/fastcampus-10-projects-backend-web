@@ -75,7 +75,7 @@
                                     Lorem ipsum dolor sit amet
                                 </p>
                             </div>
-                            <div class="col-2 mb-3">
+                            <div class="col-2 mb-3 align-self-center">
                                 <button type="submit" class="btn btn-outline-danger" id="delete-comment-button">삭제
                                 </button>
                             </div>
@@ -84,7 +84,7 @@
                 </li>
                 <li>
                     <div class="row">
-                        <div>
+                        <div class="col-md-10 col-lg-9">
                             <strong>Soono</strong>
                             <small>
                                 <time>2022-01-01</time>
@@ -94,6 +94,9 @@
                                 Lorem ipsum dolor sit amet
                             </p>
                         </div>
+                        <div class="col-2 mb-3">
+                            <button type="submit" class="btn btn-outline-danger" hidden>삭제</button>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -102,7 +105,7 @@
     </div>
 
     <div class="row g-5">
-        <nav aria-label="Page navigation example">
+        <nav id="pagination" aria-label="Page navigation">
             <ul class="pagination">
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
