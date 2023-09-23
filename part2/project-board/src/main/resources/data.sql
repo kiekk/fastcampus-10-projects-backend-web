@@ -1,6 +1,6 @@
 -- 테스트 계정
 insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values
-    ('soono', 'asdf1234', 'soono', 'soono@mail.com', 'I am soono.', now(), 'uno', now(), 'uno')
+    ('soono', '{noop}asdf1234', 'soono', 'soono@mail.com', 'I am soono.', now(), 'uno', now(), 'uno')
 ;
 
 -- 123 게시글
