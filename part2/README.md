@@ -6,7 +6,7 @@
 
 ## 개발 환경
 
-* Intellij IDEA Ultimate 203.1.4
+* Intellij IDEA Ultimate 2023.1.4
 * Java 17
 * Gradle 8.2.1
 * Spring Boot 3.1.3
