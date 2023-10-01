@@ -20,7 +20,7 @@ Spring Boot
 * Spring Data JPA
 * Rest Repositories
 * Rest Repositories HAL Explorer
-* Thymelaf
+* Thymeleaf
 * Spring Security
 * H2 Database
 * MySQL Driver
