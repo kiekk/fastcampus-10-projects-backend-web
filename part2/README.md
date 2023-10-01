@@ -6,14 +6,12 @@
 
 ## 개발 환경
 
-* Intellij IDEA Ultimate 2023.1.4
+* Intellij IDEA Ultimate 2023.2.2
 * Java 17
 * Gradle 8.2.1
 * Spring Boot 3.1.3
 
 ## 기술 세부 스펙
-
-Spring Boot
 
 * Spring Boot Actuator
 * Spring Web
