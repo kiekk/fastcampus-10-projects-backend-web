@@ -298,14 +298,14 @@ class ArticleServiceTest {
     void givenNothing_whenCalling_thenReturnsHashtags() {
         // given
         List<String> expectedHashtags = List.of("#java", "#spring", "#boot");
-        given(articleRepository.findAllDistinctHashtags()).willReturn(expectedHashtags);
+        given(hashtagRepository.findAllHashtagNames()).willReturn(expectedHashtags);
 
         // when
         List<String> actualHashtags = sut.getHashtags();
 
         // then
         assertThat(actualHashtags).isEqualTo(expectedHashtags);
-        then(articleRepository).should().findAllDistinctHashtags();
+        then(hashtagRepository).should().findAllHashtagNames();
     }
 
     @DisplayName("없는 해시태그를 검색하면, 빈 페이지를 반환한다.")
@@ -341,7 +341,6 @@ class ArticleServiceTest {
         // Then
         then(articleRepository).should().getReferenceById(differentArticleId);
         then(userAccountRepository).should().getReferenceById(dto.userAccountDto().userId());
-        then(hashtagService).shouldHaveNoInteractions();
     }
 
 

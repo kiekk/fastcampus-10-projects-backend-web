@@ -24,7 +24,7 @@
         )}"/>
                 <attr sel="th.hashtag/a" th:text="'해시태그'" th:href="@{/articles(
             page=${articles.number},
-            sort='hashtag' + (*{sort.getOrderFor('hashtag')} != null ? (*{sort.getOrderFor('hashtag').direction.name} != 'DESC' ? ',desc' : '') : '')
+            sort='hashtags' + (*{sort.getOrderFor('hashtags')} != null ? (*{sort.getOrderFor('hashtags').direction.name} != 'DESC' ? ',desc' : '') : ''),
         )}"/>
                 <attr sel="th.user-id/a" th:text="'작성자'" th:href="@{/articles(
             page=${articles.number},
@@ -40,7 +40,12 @@
                 <attr sel="tr[0]" th:each="article : ${articles}">
                     <attr sel="td.title/a" th:text="${article.title}"
                           th:href="@{'/articles/' + ${article.id}}"/>
-                    <attr sel="td.hashtag" th:text="${article.hashtag}"/>
+                    <attr sel="td.hashtag/span" th:each="hashtag : ${article.hashtags}">
+                        <attr sel="a"
+                              th:text="'#' + ${hashtag}"
+                              th:href="@{/articles(searchType=${searchTypeHashtag},searchValue=${hashtag})}"
+                        />
+                    </attr>
                     <attr sel="td.user-id" th:text="${article.nickname}"/>
                     <attr sel="td.created-by/time" th:datetime="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"/>
                 </attr>
