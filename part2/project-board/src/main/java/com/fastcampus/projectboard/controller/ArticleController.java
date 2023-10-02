@@ -40,6 +40,7 @@ public class ArticleController {
         model.addAttribute("articles", articleResponses);
         model.addAttribute("searchTypes", SearchType.values());
         model.addAttribute("paginationBarNumbers", barNumbers);
+        model.addAttribute("searchTypeHashtag", SearchType.HASHTAG);
         return "articles/index";
     }
 
@@ -49,6 +50,7 @@ public class ArticleController {
         model.addAttribute("article", articleWithCommentsResponse);
         model.addAttribute("articleComments", articleWithCommentsResponse.articleCommentResponses());
         model.addAttribute("totalCount", articleService.getArticleCount());
+        model.addAttribute("searchTypeHashtag", SearchType.HASHTAG);
         return "articles/detail";
     }
 
