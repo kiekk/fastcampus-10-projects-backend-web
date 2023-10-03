@@ -5,7 +5,9 @@ import com.fastcampus.projectboard.domain.user.UserAccount;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
@@ -34,14 +36,29 @@ public class ArticleComment extends AuditingFields {
     @ManyToOne(optional = false)
     private UserAccount userAccount; // 유저 정보 (ID)
 
-    private ArticleComment(Article article, UserAccount userAccount, String content) {
+    @Setter
+    @Column(updatable = false)
+    private Long parentCommentId; // 부모 댓글 ID
+
+    @ToString.Exclude
+    @OrderBy("createdAt")
+    @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
+    private Set<ArticleComment> childComments = new LinkedHashSet<>();
+
+    private ArticleComment(Article article, UserAccount userAccount, String content, Long parentCommentId) {
         this.article = article;
         this.userAccount = userAccount;
         this.content = content;
+        this.parentCommentId = parentCommentId;
     }
 
     public static ArticleComment of(Article article, UserAccount userAccount, String content) {
-        return new ArticleComment(article, userAccount, content);
+        return new ArticleComment(article, userAccount, content, null);
+    }
+
+    public void addChildComment(ArticleComment child) {
+        child.setParentCommentId(this.getId());
+        this.getChildComments().add(child);
     }
 
     @Override
