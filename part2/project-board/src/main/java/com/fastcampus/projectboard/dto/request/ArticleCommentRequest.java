@@ -21,7 +21,8 @@ public record ArticleCommentRequest(
         return ArticleCommentDto.of(
                 articleId,
                 userAccountDto,
-                content
+                content,
+                parentCommentId
         );
     }
 
