@@ -48,7 +48,7 @@ public class ArticleController {
     public String article(@PathVariable Long articleId, ModelMap model) {
         ArticleWithCommentsResponse articleWithCommentsResponse = ArticleWithCommentsResponse.from(articleService.getArticleWithComments(articleId));
         model.addAttribute("article", articleWithCommentsResponse);
-        model.addAttribute("articleComments", articleWithCommentsResponse.articleCommentResponses());
+        model.addAttribute("articleComments", articleWithCommentsResponse.articleCommentsResponse());
         model.addAttribute("totalCount", articleService.getArticleCount());
         model.addAttribute("searchTypeHashtag", SearchType.HASHTAG);
         return "articles/detail";
