@@ -45,19 +45,6 @@ public class ArticleCommentService {
         }
     }
 
-    /**
-     * @Deprecated 댓글 수정 기능은 클라이언트에서 생각할 요소가 많기 때문에, 이번 개발에서는 제공 X
-     */
-    @Deprecated
-    public void updateArticleComment(ArticleCommentDto dto) {
-        try {
-            ArticleComment articleComment = articleCommentRepository.getReferenceById(dto.id());
-            if (dto.content() != null) { articleComment.setContent(dto.content()); }
-        } catch (EntityNotFoundException e) {
-            log.warn("댓글 업데이트 실패. 댓글을 찾을 수 없습니다 - dto: {}", dto);
-        }
-    }
-
     public void deleteArticleComment(Long articleCommentId, String userId) {
         articleCommentRepository.deleteByIdAndUserAccount_UserId(articleCommentId, userId);
     }
