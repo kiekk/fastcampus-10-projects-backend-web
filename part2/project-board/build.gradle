@@ -54,6 +54,11 @@ dependencies {
 	// Spring Boot 3.0 미만
 //	implementation 'com.querydsl:querydsl-jpa'
 //	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+
+	// Hibernate 단방향 mappedBy 버그 픽스
+	// https://github.com/users/kiekk/projects/2/views/1?query=is%3Aopen+sort%3Aupdated-desc&pane=issue&itemId=40408278
+	implementation 'org.hibernate:hibernate-core:6.3.1.Final'
+
 }
 
 tasks.named('test') {
