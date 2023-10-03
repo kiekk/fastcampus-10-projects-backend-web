@@ -5,11 +5,16 @@ import com.fastcampus.projectboard.dto.UserAccountDto;
 
 public record ArticleCommentRequest(
         Long articleId,
-        String content
+        String content,
+        Long parentCommentId
 ) {
 
     public static ArticleCommentRequest of(Long articleId, String content) {
-        return new ArticleCommentRequest(articleId, content);
+        return ArticleCommentRequest.of(articleId, content, null);
+    }
+
+    public static ArticleCommentRequest of(Long articleId, String content, Long parentCommentId) {
+        return new ArticleCommentRequest(articleId, content, parentCommentId);
     }
 
     public ArticleCommentDto toDto(UserAccountDto userAccountDto) {
