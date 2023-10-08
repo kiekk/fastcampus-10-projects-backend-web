@@ -1,9 +1,7 @@
 package com.fastcampus.projectboard.config;
 
-import com.fastcampus.projectboard.dto.UserAccountDto;
 import com.fastcampus.projectboard.dto.security.BoardPrincipal;
 import com.fastcampus.projectboard.dto.security.KakaoOAuth2Response;
-import com.fastcampus.projectboard.repository.UserAccountRepository;
 import com.fastcampus.projectboard.service.UserAccountService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -56,6 +54,18 @@ public class SecurityConfig {
                 .build();
     }
 
+
+    /**
+     * <p>
+     * OAuth 2.0 기술을 이용한 인증 정보를 처리한다.
+     * 카카오 인증 방식을 선택.
+     *
+     * <p>
+     * TODO: 카카오 도메인에 결합되어 있는 코드. 확장을 고려하면 별도 인증 처리 서비스 클래스로 분리하는 것이 좋지만, 현재 다른 OAuth 인증 플랫폼을 사용할 예정이 없어 이렇게 마무리한다.
+     *
+     * @param userAccountService 게시판 서비스의 사용자 계정을 다루는 서비스 로직
+     * @return {@link OAuth2UserService} OAuth2 인증 사용자 정보를 읽어들이고 처리하는 서비스 인스턴스 반환
+     */
     @Bean
     public UserDetailsService userDetailsService(UserAccountService userAccountService) {
         return username -> userAccountService
@@ -100,5 +110,5 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
-    
+
 }
