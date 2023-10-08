@@ -51,17 +51,3 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
             client-authentication-method: client_secret_post
-
----
-spring:
-  config:
-    activate:
-      on-profile: heroku
-  datasource:
-    url: ${CLEARDB_DATABASE_URL}
-  jpa:
-    hibernate:
-      ddl-auto: create
-  sql:
-    init:
-      mode: always
