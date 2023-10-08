@@ -34,6 +34,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.12'
+	implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -53,7 +54,8 @@ dependencies {
 
 	// Spring Boot 3.0 이상
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta" // querydsl JPAAnnotationProcessor 사용 지정
+	// querydsl 과 vault 가 충돌나기 때문에 직접 querdsl 버전 명시
+	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jpa" // querydsl JPAAnnotationProcessor 사용 지정
 
 	// Spring Boot 3.0 미만
 //	implementation 'com.querydsl:querydsl-jpa'
@@ -63,6 +65,16 @@ dependencies {
 	// https://github.com/users/kiekk/projects/2/views/1?query=is%3Aopen+sort%3Aupdated-desc&pane=issue&itemId=40408278
 	implementation 'org.hibernate.orm:hibernate-core:6.3.1.Final'
 
+}
+
+ext {
+	set('springCloudVersion', "2021.0.5")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {
