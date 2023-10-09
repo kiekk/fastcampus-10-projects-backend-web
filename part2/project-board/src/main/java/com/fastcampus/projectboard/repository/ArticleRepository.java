@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
@@ -20,15 +21,15 @@ public interface ArticleRepository extends
         QuerydslPredicateExecutor<Article>,
         QuerydslBinderCustomizer<QArticle> {
 
-    Page<Article> findByTitleContaining(String title, Pageable pageable);
+    Page<Article> findByTitleContaining(@Param("title") String title, Pageable pageable);
 
-    Page<Article> findByContentContaining(String content, Pageable pageable);
+    Page<Article> findByContentContaining(@Param("content") String content, Pageable pageable);
 
-    Page<Article> findByUserAccount_UserIdContaining(String userId, Pageable pageable);
+    Page<Article> findByUserAccount_UserIdContaining(@Param("userId") String userId, Pageable pageable);
 
-    Page<Article> findByUserAccount_NicknameContaining(String nickName, Pageable pageable);
+    Page<Article> findByUserAccount_NicknameContaining(@Param("nickName") String nickName, Pageable pageable);
 
-    void deleteByIdAndUserAccount_UserId(Long articleId, String userId);
+    void deleteByIdAndUserAccount_UserId(@Param("articleId") Long articleId, @Param("userId") String userId);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {

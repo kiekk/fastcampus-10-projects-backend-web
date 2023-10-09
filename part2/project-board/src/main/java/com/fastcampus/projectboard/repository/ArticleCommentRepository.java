@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public interface ArticleCommentRepository extends
         QuerydslPredicateExecutor<ArticleComment>,
         QuerydslBinderCustomizer<QArticleComment> {
 
-    List<ArticleComment> findByArticle_Id(Long articleId);
+    List<ArticleComment> findByArticle_Id(@Param("articleId") Long articleId);
 
-    void deleteByIdAndUserAccount_UserId(Long articleCommentId, String userId);
+    void deleteByIdAndUserAccount_UserId(@Param("articleCommentId") Long articleCommentId, @Param("userId") String userId);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
