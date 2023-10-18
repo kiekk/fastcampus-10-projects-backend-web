@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 // 정적 리소스 설정
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                                 .permitAll()
+                                .requestMatchers("/api/**").permitAll()
                                 // 인증이 필요하지 않은 페이지 설정
                                 .requestMatchers(
                                         new AntPathRequestMatcher("/", HttpMethod.GET.name()),
@@ -51,6 +52,7 @@ public class SecurityConfig {
                                 .userService(oAuth2UserService)
                         )
                 )
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .build();
     }
 
