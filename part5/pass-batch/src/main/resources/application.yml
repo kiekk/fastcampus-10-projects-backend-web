@@ -1,6 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: pass_local
+    url: jdbc:mysql://127.0.0.1:3366/pass_local?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: pass_local_user
     password: passlocal123
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
