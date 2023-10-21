@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: mysql_local
+    image: mysql:8.0.30
+    volumes:
+      - ./db/conf.d:/etc/mysql/conf.d # 설정 파일
+      - ./db/initdb.d:/docker-entrypoint-initdb.d # sql 실행 파일
+    ports:
+      - "3366:3306"
+    environment:
+      - MYSQL_DATABASE=pass_local
+      - MYSQL_USER=pass_local_user
+      - MYSQL_PASSWORD=passlocal123
+      - MYSQL_ROOT_PASSWORD=passlocal123
+      - TZ=Asia/Seoul
+    # 한글 깨짐 문제 해결
+    command:
+    - --character-set-server=utf8mb4
+    - --collation-server=utf8mb4_unicode_ci
+    - --skip-character-set-client-handshake
