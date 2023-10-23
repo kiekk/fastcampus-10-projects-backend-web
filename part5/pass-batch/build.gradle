@@ -25,6 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.vladmihalcea:hibernate-types-52:2.19.2'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux' // WebClient
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
