@@ -14,5 +14,5 @@ public interface PassRepository extends JpaRepository<PassEntity, Integer> {
                 , p.modifiedAt = CURRENT_TIMESTAMP
                 WHERE p.passSeq = :passSeq
             """)
-    int updateRemainingCount(Integer passSeq, Integer remainingCount);
+    int updateRemainingCount(Long passSeq, Integer remainingCount);
 }
