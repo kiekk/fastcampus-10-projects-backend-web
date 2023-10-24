@@ -10,3 +10,9 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+    job:
+      enabled: false
+# Job name must be specified in case of multiple jobs
+# 이전에는 Spring Batch를 사용하여 동시에 여러 배치 작업을 실행할 수 있었습니다. 그러나 더 이상 그렇지 않습니다.
+#  자동 구성이 단일 작업을 감지하면 애플리케이션이 시작될 때 자동으로 실행됩니다.
+# 따라서 컨텍스트에 여러 작업이 있는 경우 spring.batch.job.name 속성을 사용하여 작업 이름을 제공하여 시작 시 어떤 작업을 실행해야 하는지 지정해야 합니다. 따라서 이는 여러 작업을 실행하려면 각 작업에 대해 별도의 애플리케이션을 만들어야 함을 의미합니다.
