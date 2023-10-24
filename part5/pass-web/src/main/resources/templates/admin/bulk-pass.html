@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="/admin/header :: header"></th:block>
+<th:block th:replace="~{/admin/header :: header}"></th:block>
 <body id="page-top">
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <th:block th:replace="/admin/sidebar :: sidebar"></th:block>
+    <th:block th:replace="~{/admin/sidebar :: sidebar}"></th:block>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
-            <th:block th:replace="/admin/topbar :: topbar"></th:block>
+            <th:block th:replace="~{/admin/topbar :: topbar}"></th:block>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -102,13 +102,13 @@
 
 </div>
 <!-- End of Main Content -->
-<th:block th:replace="/admin/footer :: footer"></th:block>
+<th:block th:replace="~{/admin/footer :: footer}"></th:block>
 </div>
 <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
-<th:block th:replace="/admin/script :: script"></th:block>
+<th:block th:replace="~{/admin/script :: script}"></th:block>
 
 </body>
 </html>
