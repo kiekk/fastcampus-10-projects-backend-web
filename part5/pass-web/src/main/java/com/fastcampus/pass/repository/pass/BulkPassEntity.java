@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class BulkPassEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 DB에 위임합니다. (AUTO_INCREMENT)
-    private Integer bulkPassSeq;
-    private Integer packageSeq;
+    private Long bulkPassSeq;
+    private Long packageSeq;
     private String userGroupId;
 
     @Enumerated(EnumType.STRING)

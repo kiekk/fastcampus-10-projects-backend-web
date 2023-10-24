@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface StatisticsRepository extends JpaRepository<StatisticsEntity, Integer> {
+public interface StatisticsRepository extends JpaRepository<StatisticsEntity, Long> {
 
     @Query(value = """
             SELECT new com.fastcampus.pass.service.statistics.AggregatedStatistics(s.statisticsAt, SUM(s.allCount), SUM(s.attendedCount), SUM(s.cancelledCount))

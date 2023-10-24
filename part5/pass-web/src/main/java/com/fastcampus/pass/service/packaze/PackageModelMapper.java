@@ -1,8 +1,6 @@
 package com.fastcampus.pass.service.packaze;
 
 import com.fastcampus.pass.repository.packaze.PackageEntity;
-import com.fastcampus.pass.repository.pass.BulkPassEntity;
-import com.fastcampus.pass.service.pass.BulkPass;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;

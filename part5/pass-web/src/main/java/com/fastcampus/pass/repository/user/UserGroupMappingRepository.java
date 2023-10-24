@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UserGroupMappingRepository extends JpaRepository<UserGroupMappingEntity, Integer> {
+public interface UserGroupMappingRepository extends JpaRepository<UserGroupMappingEntity, Long> {
 
     @Query("""
             select distinct u.userGroupId

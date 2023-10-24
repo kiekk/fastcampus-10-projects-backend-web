@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 public class PassEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 DB에 위임합니다. (AUTO_INCREMENT)
-    private Integer passSeq;
-    private Integer packageSeq;
+    private Long passSeq;
+    private Long packageSeq;
     private String userId;
 
     @Enumerated(EnumType.STRING)

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface BulkPassRepository extends JpaRepository<BulkPassEntity, Integer> {
+public interface BulkPassRepository extends JpaRepository<BulkPassEntity, Long> {
 
     @Query(value = """
                 select b from BulkPassEntity b

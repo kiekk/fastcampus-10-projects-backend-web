@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface PassRepository extends JpaRepository<PassEntity, Integer> {
+public interface PassRepository extends JpaRepository<PassEntity, Long> {
     @Query(value = """
                         select p from PassEntity p
                         join fetch p.packageEntity
