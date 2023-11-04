@@ -9,3 +9,8 @@
 * [Part 3. 게시판 서비스 고도화](https://github.com/kiekk/fastcampus-10-projects-backend-web/tree/master/part2)
 * [Part 4. 어드민 서비스](https://github.com/kiekk/fastcampus-project-board-admin)
 * [Part 5. PT 이용권 관리 서비스](https://github.com/kiekk/fastcampus-10-projects-backend-web/tree/master/part5)
+* Part 6. IT 서비스 회사에서 사용하는 진짜 프로젝트 맛보기
+  * [Multi Module](https://github.com/kiekk/fastcampus-multimodule)
+  * [Feign Client](https://github.com/kiekk/fastcampus-feign-client)
+  * [Logback](https://github.com/kiekk/fastcampus-logback)
+  * [Github Action](https://github.com/kiekk/fastcampus-github-action)
