@@ -14,3 +14,4 @@
   * [Feign Client](https://github.com/kiekk/fastcampus-feign-client)
   * [Logback](https://github.com/kiekk/fastcampus-logback)
   * [Github Action](https://github.com/kiekk/fastcampus-github-action)
+* [Part 7. 약국 길찾기 서비스](https://github.com/kiekk/fastcampus-10-projects-backend-web/tree/master/part7)
